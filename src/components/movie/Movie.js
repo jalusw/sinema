@@ -9,6 +9,10 @@ export default class Movie extends HTMLElement {
     this._movie = movie;
   }
 
+  set genres(genres) {
+    this._genres = genres;
+  }
+
   connectedCallback() {
     this.innerHTML = `
     <a href="#" class="group block relative min-w-[150px] max-w-[200px] overflow-hidden" aria-label="${this._movie.original_title}">
@@ -21,17 +25,16 @@ export default class Movie extends HTMLElement {
       </div>
     </a>
     `;
-    const genres = JSON.parse(localStorage.getItem("genres"));
     const genresWrapper = this.querySelector(`#genres-wrapper`);
     let genresString = "";
     let lastGenre = 0;
     for (let i = 0; i < this._movie.genre_ids.length - 1; i++) {
-      genresString += genres[this._movie.genre_ids[i]] + ", ";
+      genresString += this._genres[this._movie.genre_ids[i]] + ", ";
       lastGenre = i;
     }
     genresString +=
-      genres[this._movie.genre_ids[lastGenre + 1]] ||
-      genres[this._movie.genre_ids[lastGenre]];
+      this._genres[this._movie.genre_ids[lastGenre + 1]] ||
+      this._genres[this._movie.genre_ids[lastGenre]];
     genresWrapper.textContent = genresString;
   }
 }

@@ -7,9 +7,13 @@ export default class MovieSection extends HTMLElement {
 
   async renderMovies() {
     const movies = await fetchApiData(this.getAttribute("data-path"));
+    const genres = await fetchApiData("genre/movie/list");
+    const genresMap = {};
+    for (let genre of genres.data.genres) genresMap[genre.id] = genre.name;
     for (let movie of movies.data.results) {
       const movieElement = document.createElement("movie-item");
       movieElement.movie = movie;
+      movieElement.genres = genresMap;
       this.querySelector("#wrapper").appendChild(movieElement);
     }
   }
