@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Public Sans";
+  font-display: "swap";
+  src: url("./fonts/PublicSans-Regular.woff") format("woff"),
+    url("./fonts/PublicSans-Regular.woff2") format("woff2");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

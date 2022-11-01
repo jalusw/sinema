@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Movie DB" />
+    <title>Sinema</title>
+    <link rel="dns-prefetch" href="https://image.tmdb.org" />
+    <link rel="dns-prefetch" href="https://api.themoviedb.org" />
+  </head>
+  <body class="bg-[#111111]">
+    <noscript class="text-white"
+      >Please enable javascript to open this website.</noscript
+    >
+    <header
+      class="shadow-sm py-3 bg-[#141414] shadow-[1px_1px_1px_rgba(220,38,38,0.5)]"
+    >
+      <div class="container flex items-center">
+        <h1 class="text-2xl font-bold tracking-widest">
+          <a href="/" class="text-red-600">SINEMA</a>
+        </h1>
+        <nav
+          id="nav-menu"
+          class="flex-1 flex flex-col fixed top-0 right-0 w-[55%] h-[100vh] translate-x-full transition duration-300 bg-[#141414] shadow-sm md:flex-row md:static md:w-auto md:h-auto md:bg-transparent md:shadow-none md:translate-x-0"
+        >
+          <ul
+            class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-3 md:ml-4"
+          >
+            <li class="self-end md:hidden">
+              <button
+                id="btn-hide-nav-menu"
+                class="p-4 text-red-600"
+                aria-label="Hide Navigation Menu"
+              >
+                <i data-feather="x"></i>
+              </button>
+            </li>
+            <li class="px-4 mt-4 md:p-0 md:m-0">
+              <a href="#" class="text-slate-100">Home</a>
+            </li>
+            <li class="px-4 md:p-0 md:m-0">
+              <a href="#" class="text-red-500">Movies</a>
+            </li>
+            <li class="px-4 md:p-0 md:m-0">
+              <a href="#" class="text-slate-100">TV Shows</a>
+            </li>
+          </ul>
+          <div class="md:flex-1"></div>
+          <ul
+            class="flex flex-col space-y-4 mt-10 md:flex-row md:space-y-0 md:m-0 md:space-x-3"
+          >
+            <li class="px-4 md:p-0">
+              <a
+                href="#"
+                class="bg-red-600 text-white p-2 px-3 rounded-sm transition duration-300 hover:bg-red-800"
+                >Subscription</a
+              >
+            </li>
+            <li class="px-4 md:p-0">
+              <a href="#" class="text-slate-100">Sign In</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="flex-1 md:hidden"></div>
+        <button
+          id="btn-show-nav-menu"
+          class="md:hidden text-red-600"
+          aria-label="Show Navigation Menu"
+        >
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <section class="my-4">
+          <movie-section
+            data-title="Now Playing"
+            data-path="movie/now_playing"
+          ></movie-section>
+        </section>
+        <section class="my-4">
+          <movie-section
+            data-title="Popular Movies"
+            data-path="movie/popular"
+          ></movie-section>
+        </section>
+        <section class="my-4">
+          <movie-section
+            data-title="Trending This Week"
+            data-path="trending/movie/week"
+          >
+          </movie-section>
+        </section>
+        <div
+          class="grid grid-cols-12 border-box mt-10 gap-y-5 lg:gap-y-0 lg:gap-x-10"
+        >
+          <div class="col-span-12 lg:col-span-3">
+            <button
+              type="button"
+              class="text-xl text-slate-200 lg:cursor-auto"
+              id="toggle-filter"
+            >
+              <i data-feather="filter" class="inline"></i>
+              <span>Filter</span>
+            </button>
+            <div
+              id="filter-wrapper"
+              class="scale-y-0 h-0 overflow-hidden transition duration-300 lg:h-auto lg:scale-y-100"
+            >
+              <filter-language data-target="main-movie-list"></filter-language>
+              <filter-release-dates
+                data-target="main-movie-list"
+              ></filter-release-dates>
+              <filter-genres data-target="main-movie-list"></filter-genres>
+            </div>
+          </div>
+          <div class="col-span-12 lg:col-span-9">
+            <section>
+              <h2 class="font-bold text-lg text-slate-200">Discover Movies</h2>
+              <movie-list id="main-movie-list"></movie-list>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="mt-10">
+      <p
+        class="bg-[#141414] text-white text-center py-2 border-t-[1px] border-red-600"
+      >
+        Copyright © 2022, <span class="font-bold text-red-500">Sinema</span> All
+        rights reserved
+      </p>
+    </footer>
+  </body>
+</html>
