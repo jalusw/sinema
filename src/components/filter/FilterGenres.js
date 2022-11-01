@@ -7,15 +7,12 @@ export default class FilterGenres extends HTMLElement {
 
   async renderGenres() {
     const genres = await fetchApiData("genre/movie/list");
-    const genresMap = {};
     for (let genre of genres.data.genres) {
-      genresMap[genre.id] = genre.name;
       const genreItem = document.createElement("filter-genre-item");
       genreItem.genre = genre;
       genreItem.setAttribute("data-target", this.getAttribute("data-target"));
       this.querySelector("#list-genre").appendChild(genreItem);
     }
-    localStorage.setItem("genres", JSON.stringify(genresMap));
   }
 
   connectedCallback() {
